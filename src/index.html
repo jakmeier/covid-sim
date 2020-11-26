@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Covid19 Infection Simulation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <script src="index.js"></script>
+    <h1>Corona Simulator</h1>
+    <main>
+        <section class="legend">
+            <div class="legend-color healthy"></div>
+            <div id="legend-healthy"> Healthy</div>
+            <div class="legend-color infected"></div>
+            <div id="legend-infected">Infected</div>
+            <div class="legend-color immune"></div>
+            <div id="legend-immune">Immune</div>
+            <div class="legend-color dead"></div>
+            <div id="legend-dead">Dead</div>
+        </section>
+        <section class="buttons">
+            <button type="button" class="button" onclick="reset()">Reset</button>
+            <label class="switch">
+                <input type="checkbox" name="use-js" id="use-js" onchange="reload_lang()">
+                <span class="slider button"> <div id="active-lang">Rust</div> </span>
+                </label>
+            <button type="button" class="next button" onclick="advance()">Next Day</button>
+        </section>
+        <section>
+            <form id="settings" class="config-form">
+                <label for="width">Width:</label>
+                <input type="number" name="width" value="20" min="0" title="Number of cells in row" onchange="reload_settings()">
+                <label for="height">Height:</label>
+                <input type="number" name="height" value="5" min="0" title="Number of cells in column" onchange="reload_settings()">
+                <label for="radius">Radius:</label>
+                <input type="number" name="radius" value="2" min="0" title="How many cells the virus can spread in a single day" onchange="reload_settings()">
+                <label for="infection_rate">Infection Rate:</label>
+                <input type="number" name="infection_rate" value="0.01" step="0.0001" min="0.0" max="1.0" title="Chance that a person is infected by a single infected patient in the infection radius." onchange="reload_settings()">
+                <label for="death_rate">Death Rate:</label>
+                <input type="number" name="death_rate" value="0.03" step="0.01" min="0.0" max="1.0" title="Chance that an infected person dies in a day." onchange="reload_settings()">
+                <label for="recovery">Days until recovered:</label>
+                <input type="number" name="recovery" value="10" min="1" max="20" title="Chance that an infected person dies in a day." onchange="reload_settings()">
+            </form>
+        </section>
+        <!-- Dynamic JS will be inserted here -->
+    </main>
+</body>
+
+</html>
