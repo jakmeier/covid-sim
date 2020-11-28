@@ -1,5 +1,5 @@
 {
-    "name": "covid-sim",
+    "name": "@jakmeier/covid-sim",
     "version": "1.0.0",
     "description": "A demo app for Rust in the browser, written by Jakob Meier for SitePoint.com",
     "main": "index.js",
