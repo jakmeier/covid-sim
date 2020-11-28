@@ -173,3 +173,8 @@ input:checked+.slider {
 input:checked+.slider:before {
     left: calc(100% - 60px);
 }
+
+footer {
+    margin-top: 50px;
+    height: 200px;
+}
