@@ -11,11 +11,26 @@ main {
     width: 100%;
 }
 
+@media(max-width: 1200px) {
+    main {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "form legend" "buttons buttons" "humans humans";
+    }
+}
+
+@media(max-width: 800px) {
+    main {
+        grid-template-columns: 1fr;
+        grid-template-areas: "form" "legend" "buttons" "humans";
+    }
+}
+
 .config-form {
     grid-area: form;
     display: grid;
     grid-template-columns: min-content minmax(max-content, 200px);
     align-items: center;
+    justify-content: center;
     grid-gap: 10px;
     margin: 20px;
 }
