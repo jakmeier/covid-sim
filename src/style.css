@@ -11,20 +11,6 @@ main {
     width: 100%;
 }
 
-@media(max-width: 1200px) {
-    main {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas: "form legend" "buttons buttons" "humans humans";
-    }
-}
-
-@media(max-width: 800px) {
-    main {
-        grid-template-columns: 1fr;
-        grid-template-areas: "form" "legend" "buttons" "humans";
-    }
-}
-
 .config-form {
     grid-area: form;
     display: grid;
@@ -177,4 +163,21 @@ input:checked+.slider:before {
 footer {
     margin-top: 50px;
     height: 200px;
+}
+
+@media(max-width: 1200px) {
+    main {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "form legend" "buttons buttons" "humans humans";
+    }
+}
+
+@media(max-width: 800px) {
+    main {
+        grid-template-columns: 1fr;
+        grid-template-areas: "form" "legend" "buttons" "humans";
+    }
+    .legend {
+        grid-template-columns: min-content max-content min-content max-content;
+    }
 }
