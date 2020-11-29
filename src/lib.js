@@ -3,7 +3,7 @@
 import { HEALTHY, INFECTED_DAY_0, INFECTED_DAY_MAX, IMMUNE, DEAD } from "./index";
 
 export class JsSimulation {
-    constructor(name, year) {
+    constructor() {
         this.w = 0;
         this.h = 0;
         this.recovery = 0;
