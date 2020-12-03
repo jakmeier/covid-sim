@@ -35,9 +35,6 @@ function main() {
     humans = new Uint8Array();
 
     reloadSettings();
-
-    // Infect patient 0
-    setState(Math.floor(humans.length / 2), INFECTED_DAY_0)
     updateView();
 
     // Advance on space bar
@@ -157,6 +154,9 @@ function generateHtmlNodes(w, h) {
     infected = 0;
     immune = 0;
     dead = 0;
+
+    // Infect patient 0
+    setState(Math.floor(humans.length / 2), INFECTED_DAY_0);
 }
 
 function updateView() {
