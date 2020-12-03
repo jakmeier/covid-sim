@@ -26,25 +26,28 @@
         <section class="buttons">
             <button type="button" class="button" onclick="reset()">Reset</button>
             <label class="switch">
-                <input type="checkbox" name="use-js" id="use-js" onchange="reload_lang()">
+                <input type="checkbox" name="use-js" id="use-js" onchange="reloadLang()">
                 <span class="slider button"> <div id="active-lang">Rust</div> </span>
                 </label>
             <button type="button" class="next button" onclick="advance()">Next Day</button>
+            <button id="start-stop-button" type="button" class="start button" onclick="startStop()">Start Simulation</button>
         </section>
         <section>
             <form id="settings" class="config-form">
                 <label for="width">Width:</label>
-                <input type="number" name="width" value="20" min="0" title="Number of cells in row" onchange="reload_settings()">
+                <input type="number" name="width" value="20" min="0" title="Number of cells in row" onchange="reloadSettings()">
                 <label for="height">Height:</label>
-                <input type="number" name="height" value="5" min="0" title="Number of cells in column" onchange="reload_settings()">
+                <input type="number" name="height" value="5" min="0" title="Number of cells in column" onchange="reloadSettings()">
                 <label for="radius">Radius:</label>
-                <input type="number" name="radius" value="2" min="0" title="How many cells the virus can spread in a single day" onchange="reload_settings()">
+                <input type="number" name="radius" value="2" min="0" title="How many cells the virus can spread in a single day" onchange="reloadSettings()">
                 <label for="infection_rate">Infection Rate:</label>
-                <input type="number" name="infection_rate" value="0.01" step="0.0001" min="0.0" max="1.0" title="Chance that a person is infected by a single infected patient in the infection radius." onchange="reload_settings()">
+                <input type="number" name="infection_rate" value="0.02" step="0.0001" min="0.0" max="1.0" title="Chance that a person is infected by a single infected patient in the infection radius." onchange="reloadSettings()">
                 <label for="death_rate">Death Rate:</label>
-                <input type="number" name="death_rate" value="0.03" step="0.01" min="0.0" max="1.0" title="Chance that an infected person dies in a day." onchange="reload_settings()">
+                <input type="number" name="death_rate" value="0.03" step="0.01" min="0.0" max="1.0" title="Chance that an infected person dies in a day." onchange="reloadSettings()">
                 <label for="recovery">Days until recovered:</label>
-                <input type="number" name="recovery" value="10" min="1" max="20" title="Chance that an infected person dies in a day." onchange="reload_settings()">
+                <input type="number" name="recovery" value="10" min="1" max="20" title="Chance that an infected person dies in a day." onchange="reloadSettings()">
+                <label for="delay">Simulation delay:</label>
+                <input type="number" name="delay" value="300" min="1" title="Delay between simulation steps in ms.">
             </form>
         </section>
         <!-- Dynamic JS will be inserted here -->

@@ -34,7 +34,7 @@ function main() {
     simulation = rustSimulation;
     humans = new Uint8Array();
 
-    reload_settings();
+    reloadSettings();
 
     // Infect patient 0
     setState(Math.floor(humans.length / 2), INFECTED_DAY_0)
@@ -47,12 +47,13 @@ function main() {
 
     // Make functions globally available for onclick handler on button
     window.advance = advance;
-    window.reload_settings = reload_settings;
-    window.reload_lang = reload_lang;
+    window.startStop = startStop;
+    window.reloadSettings = reloadSettings;
+    window.reloadLang = reloadLang;
     window.reset = reset;
 }
 
-function reload_settings() {
+function reloadSettings() {
     const form = document.getElementById("settings");
     const data = new FormData(form);
     const w = parseInt(data.get("width"));
@@ -72,7 +73,7 @@ function reload_settings() {
     rustSimulation.reconfigure(w, h, radius, recoveryDays, infectionRate, deathRate);
 }
 
-function reload_lang() {
+function reloadLang() {
     useJs = document.getElementById("use-js").checked;
     if (useJs) {
         simulation = jsSimulation;
@@ -97,23 +98,39 @@ function reset() {
 }
 
 function advance() {
-    let new_state = new Uint8Array(humans.length);
+    let newState = new Uint8Array(humans.length);
     const t0 = performance.now();
-    simulation.next_day(humans, new_state);
+    simulation.next_day(humans, newState);
     const t1 = performance.now();
     for (let i = 0; i < htmlNodes.length; i++) {
-        if (new_state[i] != humans[i]) {
-            setState(i, new_state[i]);
+        if (newState[i] != humans[i]) {
+            setState(i, newState[i]);
         }
     }
     updateView();
-    humans = new_state;
+    humans = newState;
     const t2 = performance.now();
     if (useJs) {
         console.log(`Updated in ${t2 - t0}ms  (${t1 - t0}ms computing in JS, ${t2 - t1}ms DOM updates in JS)`);
     } else {
         console.log(`Updated in ${t2 - t0}ms  (${t1 - t0}ms computing in Rust, ${t2 - t1}ms DOM updates in JS)`);
     }
+}
+
+let handle;
+let isRunning = false;
+
+function startStop() {
+    const form = document.getElementById("settings");
+    let simulationDelay = form.elements["delay"].value;
+    if (isRunning) {
+        clearInterval(handle);
+        document.getElementById("start-stop-button").innerText = "Start Simulation";
+    } else {
+        handle = setInterval(advance, simulationDelay);
+        document.getElementById("start-stop-button").innerText = "Stop Simulation";
+    }
+    isRunning = !isRunning;
 }
 
 function generateHtmlNodes(w, h) {
